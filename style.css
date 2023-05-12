@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=DM+Serif+Display&family=Epilogue:wght@500;700&family=Great+Vibes&family=Inter:wght@300;400&family=Kumbh+Sans:wght@200;400;500;700&family=Montserrat:wght@300;400&family=Mukta:wght@300;400;500;700&family=Nixie+One&family=Nunito:wght@200;300;600;700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@700&family=Public+Sans:wght@100;200;300;400;500&family=Raleway:wght@400;700&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400&display=swap');
+
+:root {
+    --clr-primary-bright-blue: hsl(220, 98%, 61%);
+
+    /*-Check Background*/
+    --clr-check-background: linear-gradient(to right top, #57ddff, #00c9ff, #03afff, #7a8cff, #c058f3); 
+
+    /*Light Theme*/
+    --clr-l-light-gray: hsl(0, 0%, 98%);
+    --clr-l-very-light-grayish-blue: hsl(236, 33%, 92%);
+    --clr-l-light-grayish-blue: hsl(233, 11%, 84%);
+    --clr-l-dark-grayish-blue: hsl(236, 9%, 61%);
+    --clr-l-very-dark-grayish-blue: hsl(235, 19%, 35%);
+    
+    /*Dark Theme*/
+    --clr-d-very-dark-blue: hsl(235, 21%, 11%);
+    --clr-d-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+    --clr-d-light-grayish-blue: hsl(234, 39%, 85%);
+    --clr-d-light-grayish-blue-hover: hsl(236, 33%, 92%);
+    --clr-d-dark-grayish-blue: hsl(234, 11%, 52%);
+    --clr-d-very-dark-grayish-blue: hsl(233, 14%, 35%);
+    --clr-d-very-dark-grayish-blue: hsl(237, 14%, 26%);
+    --clr-button-hover: rgb(89, 122, 212);
+
+    /*--ff-primary: "Josefin Sans";*/
+    --ff-primary: "Barlow Semi Condensed", sans-serif;
+}
+
+.light-mode {
+    --clr-d-very-dark-grayish-blue: hsl(0, 0%, 98%); /*bgcolor search container and todo´s container bg-color-dark*/
+    --clr-l-light-gray: hsl(235, 19%, 35%);
+    --clr-d-very-dark-blue:  hsl(233, 11%, 84%); /*body-bg-color*/
+    --clr-l-very-light-grayish-blue: hsl(236, 9%, 61%); /*placeholder input color*/
+    background-image: url(./images/bg-desktop-light.jpg);
+}
+
+html {
+    font-size: 18px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: var(--ff-primary);
+}
+
+body {
+    background-image: url(./images/bg-desktop-dark.jpg); /*background image dark*/
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    background-color: var(--clr-d-very-dark-blue);
+    transition: background-color 0.6s, color 0.6s, background-image 0.6s;
+}
+
+h1, span, div {
+    font-family: var(--ff-primary);
+}
+
+div.hearder {
+    /*border: green solid 3px;*/
+    display:  flex;
+}
+
+section.container {
+    /*border: red solid 4px;*/
+    width: 45%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.hearder {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ffff;
+    text-transform: uppercase;
+    letter-spacing: .65rem;
+}
+
+.mode-icon-container img {
+    background: none;
+}
+
+div.input, div.button-container-mobile {
+    height: 4rem;
+    background-color: var(--clr-d-very-dark-grayish-blue);
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+}
+
+div.button-container-mobile {
+    display: none;
+}
+
+input {
+    background-color: var(--clr-d-very-dark-grayish-blue);
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 4rem;
+    color: var(--clr-l-very-light-grayish-blue);
+    padding: 0 2rem;
+    border-radius: .5rem;
+    transition: background-color .3s;
+}
+
+/*main container for the list*/
+.main-container {
+    /*border: solid green 3px;*/
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+    width: 100%;
+    background-color: var(--clr-d-very-dark-grayish-blue);
+    border-radius: .5rem;
+    transition: background-color .3s;
+}
+
+/*this is the row which will be added*/
+div.list-row {
+    border-bottom: 1px solid var(--clr-l-very-light-grayish-blue);
+    color: var(--clr-l-light-gray);
+    height: 3.5rem;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+
+    cursor: move;
+}
+
+.list-row.over {
+    border: #03afff solid 3px;
+
+}
+
+
+.circle { /*the circle before the task name*/
+    border: solid 1px var(--clr-l-light-grayish-blue);
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
+/*if we check the circle*/
+.checked {
+    background-image: url(./images/icon-check.svg), var(--clr-check-background);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#close-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+#close {
+    margin-left: auto; 
+}
+
+.task-name {
+    font-weight: lighter;
+}
+
+.task-name.active {
+    text-decoration: line-through;
+    color: var(--clr-d-dark-grayish-blue);
+}
+
+/*filters on the bottom*/
+.menu { 
+    align-self: center;
+    margin-top: auto;
+    /*border: blue solid 3px;*/
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.7rem 2rem;
+    padding-bottom: .5rem;
+}
+
+.menu button:hover {
+    color: var(--clr-button-hover);
+}
+
+div.button-container-desktop {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 30%;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: .9rem;
+    color: var(--clr-d-dark-grayish-blue);
+    font-weight: 700;
+}
+
+button.active {
+    color: var(--clr-button-hover);
+}
+
+.task-counter {
+    width: 7rem;
+    height: 2rem;
+    color: var(--clr-d-dark-grayish-blue);
+}
+
+/*Footer*/
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px){
+    section.container {
+        width: 90%;
+        margin-top: 1.8rem; 
+        margin-bottom: 5rem; /*edit 5 or delete*/
+    }
+
+    body {
+        background-image: url(./images/bg-mobile-dark.jpg);
+    }
+
+    .light-mode {
+        background-image: url(./images/bg-mobile-light.jpg);
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    div.input {
+        height: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    input {
+        height: 3rem;
+        padding: 0 .8rem;
+    }
+
+    div.list-row {
+        height: 3.5rem;
+        padding: 0 .8rem;
+    }
+
+    .menu {
+        padding: 0 .8rem;
+    }
+
+    div.button-container-desktop {
+        visibility: hidden;
+    }
+
+    div.button-container-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .circle { /*the circle before the task name*/
+        height: 1.3rem;
+        width: 1.3rem;
+        margin-right: .9rem;
+    }
+    
+    #close-icon {
+        width: .8rem;
+        height: .8rem;
+    }
+
+}

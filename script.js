@@ -1,13 +1,11 @@
 const inputField = document.getElementById('task-input');
 const taskItemsContainer = document.getElementById('list-items-container');
 const listRow = document.querySelector('.list-row');
-//buttons for filters and clear all
+//buttons for filters and clear all button
 let i = 0;
 const removeAllCompletedButton = document.getElementsByClassName('clear-completed-btn')[0];
 const showActiveButtons = document.querySelectorAll('.show-active-btn');
 const showActiveButton = showActiveButtons[i];
-//const showActiveButton = document.getElementsByClassName('show-active-btn')[0];
-//const showCompletedButton = document.getElementsByClassName('show-completed-btn')[0];
 const showCompletedButtons = document.querySelectorAll('.show-completed-btn');
 const showCompletedButton = showCompletedButtons[i];
 const showAllButtons = document.querySelectorAll('.show-all-btn');
@@ -19,7 +17,7 @@ function addTask(task, close) {
     if (inputField.value === '' || inputField.value == null) {
         alert('You must write a task!')
 
-        saveData()
+        //saveData()
     } else {
         let listRow = document.createElement("div");
         let task = inputField.value
@@ -28,36 +26,45 @@ function addTask(task, close) {
         taskItemsContainer.append(listRow)
         listRow.innerHTML = listRowContent
 
-        //const close = document.getElementById('close-icon')
+        //this is needed to add the eventlisteners to the newly added rows as well.
+        let listRows = document.querySelectorAll('.list-row')
+        listRows.forEach(function (listRow) {
+            listRow.addEventListener('dragstart', handleDragStart);
+            listRow.addEventListener('dragover', handleDragOver);
+            listRow.addEventListener('dragenter', handleDragEnter);
+            listRow.addEventListener('dragleave', handleDragLeave);
+            listRow.addEventListener('dragend', handleDragEnd);
+            listRow.addEventListener('dragend', saveData); //saves the new order of the list in the browser after we reordered it
+            listRow.addEventListener('drop', handleDrop);
+        });
         countTasks()
         saveData()
-
     }
+
     inputField.value = ''
-}
+};
 
 //executes the function when we hit enter and adds tasks to the list
 inputField.addEventListener('keypress', function (e) {
     if (e.code === "Enter") {
         addTask()
-        countTasks() //not needed
     }
 });
 
-//removes the task if we click on the x
+//removes the task if we click on the "x" and marks the task as completed when we click on the circle 
 taskItemsContainer.addEventListener('click', function (e) {
     if (e.target.tagName === 'IMG') { //removes the list items
         e.target.parentElement.parentElement.remove();
-        saveData()
+
     } else if (e.target.tagName === 'SPAN' && e.target.classList.contains('circle')) {
         let taskName = document.querySelector('.task-name')
         taskName = e.target.nextElementSibling;
         e.target.classList.toggle("checked");
         taskName.classList.toggle('active');
-
-        saveData()
     }
+
     countTasks()
+    saveData()
 });
 
 // removes all completed tasks - CLEAR COMPLETED button
@@ -70,13 +77,14 @@ function removeAllCompleted() {
         if (taskName !== undefined && taskName.classList.contains('active')) {
             taskName.parentElement.parentElement.remove();
 
-            countTasks()
-            saveData()
         } // taskName !== undefined can be written simply: taskName
     }
+    countTasks()
+    saveData()
 }
 
 removeAllCompletedButton.addEventListener('click', removeAllCompleted)
+
 
 //START FILTERS
 
@@ -94,14 +102,16 @@ function showActive() {
         } else if (taskName !== undefined && taskName.classList.contains('active') == false) {
             taskName.parentElement.parentElement.style.display = 'block'
         }
-
     }
+    saveData()
 
+    //adds formatting to the btn when we click on it.
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
         button.classList.toggle('active', button === showActiveButton);
     });
 }
 
+//this is needed because of the mobile menu
 showActiveButtons.forEach(button => {
     button.addEventListener('click', showActive)
 });
@@ -116,21 +126,23 @@ function showCompleted() {
 
         //here the active classlist means completed
         if (taskName !== undefined && taskName.classList.contains('active')) {
-            console.log(taskName) //remove it when check
             taskName.parentElement.parentElement.style.display = 'block'
         } else if (taskName !== undefined && taskName.classList.contains('active') == false) {
             taskName.parentElement.parentElement.style.display = 'none'
         }
     }
+    saveData()
 
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
         button.classList.toggle('active', button === showCompletedButton);
     });
 }
 
+//this is needed because of the mobile menu
 showCompletedButtons.forEach(button => {
     button.addEventListener('click', showCompleted)
 });
+
 
 //show all tasks
 function showAll() {
@@ -143,12 +155,14 @@ function showAll() {
             taskName.parentElement.parentElement.style.display = 'block'
         }
     }
+    saveData()
 
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
         button.classList.toggle('active', button === showAllButton);
     });
 }
 
+//this is needed because of the mobile menu
 showAllButtons.forEach(button => {
     button.addEventListener('click', showAll)
 });
@@ -156,6 +170,7 @@ showAllButtons.forEach(button => {
 //END FILTERS
 
 //STORE THE DATA IN THE BROWSER
+
 function saveData() {
     localStorage.setItem('data', taskItemsContainer.innerHTML);
 }
@@ -184,14 +199,11 @@ function countTasks() {
 
         taskCounter.innerHTML = taskTotal + ' items left';
     }
-
-    //saveData() //might not needed here
 }
 countTasks()
 
 
 // DARK-LIGHT MODE TOGGLE
-
 const body = document.getElementById('body');
 const modeIconContainer = document.getElementsByClassName('mode-icon-container')[0]
 const modeIcon = document.getElementsByClassName('light-mode')[0];
@@ -205,17 +217,12 @@ function toggleLightDark() {
     } else {
         modeIcon.src = "./images/icon-sun.svg"
     }
-
-    saveData()
 }
-
 modeIconContainer.addEventListener('click', toggleLightDark);
-
+// DARK-LIGHT MODE TOGGLE END
 
 
 //// DRAG AND DROP FUNCTIONALITY
-
-let items = document.querySelectorAll('.list-row')
 
 function handleDragStart(e) {
     this.style.opacity = '0.4';
@@ -230,6 +237,7 @@ function handleDragEnd(e) {
     this.style.opacity = '1';
 }
 
+let items = document.querySelectorAll('.list-row')
 items.forEach(function (item) {
     item.addEventListener('dragstart', handleDragStart);
     item.addEventListener('dragend', handleDragEnd);
@@ -252,6 +260,7 @@ function handleDragLeave(e) {
     this.classList.remove('over');
 }
 
+//this allows us to change the order of the list items
 function handleDrop(e) {
     this.classList.remove('over');
     e.stopPropagation(); //stops the browser from redirecting
@@ -269,9 +278,18 @@ items.forEach(function (item) {
     item.addEventListener('dragenter', handleDragEnter);
     item.addEventListener('dragleave', handleDragLeave);
     item.addEventListener('dragend', handleDragEnd);
-    item.addEventListener('dragend', saveData); //saves the list in the browser after we reordered it
+    item.addEventListener('dragend', saveData); //saves the reordered list in the browser
     item.addEventListener('drop', handleDrop);
 });
+
+
+
+
+
+
+
+
+
 
 
 

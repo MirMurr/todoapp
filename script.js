@@ -77,7 +77,7 @@ function removeAllCompleted() {
         if (taskName !== undefined && taskName.classList.contains('active')) {
             taskName.parentElement.parentElement.remove();
 
-        } // taskName !== undefined can be written simply: taskName
+        }
     }
     countTasks()
     saveData()

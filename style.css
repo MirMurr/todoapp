@@ -233,15 +233,22 @@ button.active {
 /*Footer*/
 
 footer {
+    position: absolute;
+    width: 100%;
     bottom: 0;
-    margin-top: auto;
-    margin-bottom: 0;
     height: 2rem;
     background-color: var(--clr-d-very-dark-blue);
     font-size: 1.5rem;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+}
+
+@media only screen and (min-width: 1300px) {
+    section.container {
+        width: 50%;
+        margin-top: 2rem;
+    }
 }
 
 @media only screen and (max-width: 800px) {

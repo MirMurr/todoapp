@@ -77,7 +77,7 @@ function removeAllCompleted() {
         if (taskName !== undefined && taskName.classList.contains('active')) {
             taskName.parentElement.parentElement.remove();
 
-        }
+        } // taskName !== undefined can be written simply: taskName
     }
     countTasks()
     saveData()
@@ -102,8 +102,8 @@ function showActive() {
         } else if (taskName !== undefined && taskName.classList.contains('active') == false) {
             taskName.parentElement.parentElement.style.display = 'block'
         }
+        saveData()
     }
-    saveData()
 
     //adds formatting to the btn when we click on it.
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
@@ -130,8 +130,8 @@ function showCompleted() {
         } else if (taskName !== undefined && taskName.classList.contains('active') == false) {
             taskName.parentElement.parentElement.style.display = 'none'
         }
+        saveData()
     }
-    saveData()
 
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
         button.classList.toggle('active', button === showCompletedButton);
@@ -154,12 +154,12 @@ function showAll() {
         if (taskName !== undefined) {
             taskName.parentElement.parentElement.style.display = 'block'
         }
+        saveData()
     }
-    saveData()
 
     [showAllButton, showActiveButton, showCompletedButton].forEach(button => {
-        button.classList.toggle('active', button === showAllButton);
-    });
+        button.classList.toggle('active', button == showAllButton);
+    }); 
 }
 
 //this is needed because of the mobile menu
@@ -208,7 +208,6 @@ const body = document.getElementById('body');
 const modeIconContainer = document.getElementsByClassName('mode-icon-container')[0]
 const modeIcon = document.getElementsByClassName('light-mode')[0];
 
-
 function toggleLightDark() {
     body.classList.toggle('light-mode')
 
@@ -218,9 +217,11 @@ function toggleLightDark() {
         modeIcon.src = "./images/icon-sun.svg"
     }
 }
-modeIconContainer.addEventListener('click', toggleLightDark);
-// DARK-LIGHT MODE TOGGLE END
 
+modeIconContainer.addEventListener('click', toggleLightDark);
+
+
+// DARK-LIGHT MODE TOGGLE END
 
 //// DRAG AND DROP FUNCTIONALITY
 
@@ -281,20 +282,3 @@ items.forEach(function (item) {
     item.addEventListener('dragend', saveData); //saves the reordered list in the browser
     item.addEventListener('drop', handleDrop);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

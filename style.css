@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=DM+Serif+Display&family=Epilogue:wght@500;700&family=Great+Vibes&family=Inter:wght@300;400&family=Kumbh+Sans:wght@200;400;500;700&family=Montserrat:wght@300;400&family=Mukta:wght@300;400;500;700&family=Nixie+One&family=Nunito:wght@200;300;600;700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@700&family=Public+Sans:wght@100;200;300;400;500&family=Raleway:wght@400;700&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400&display=swap');
-
 :root {
-    --clr-primary-bright-blue: hsl(220, 98%, 61%);
-
     /*-Check Background*/
-    --clr-check-background: linear-gradient(to right top, #57ddff, #00c9ff, #03afff, #7a8cff, #c058f3); 
+    --clr-check-background: linear-gradient(to right top, #57ddff, #00c9ff, #03afff, #7a8cff, #c058f3);
 
     /*Light Theme*/
     --clr-l-light-gray: hsl(0, 0%, 98%);
@@ -12,7 +9,7 @@
     --clr-l-light-grayish-blue: hsl(233, 11%, 84%);
     --clr-l-dark-grayish-blue: hsl(236, 9%, 61%);
     --clr-l-very-dark-grayish-blue: hsl(235, 19%, 35%);
-    
+
     /*Dark Theme*/
     --clr-d-very-dark-blue: hsl(235, 21%, 11%);
     --clr-d-very-dark-desaturated-blue: hsl(235, 24%, 19%);
@@ -21,17 +18,20 @@
     --clr-d-dark-grayish-blue: hsl(234, 11%, 52%);
     --clr-d-very-dark-grayish-blue: hsl(233, 14%, 35%);
     --clr-d-very-dark-grayish-blue: hsl(237, 14%, 26%);
-    --clr-button-hover: rgb(89, 122, 212);
+    --clr-button-hover: hsl(220, 98%, 61%);
 
     /*--ff-primary: "Josefin Sans";*/
     --ff-primary: "Barlow Semi Condensed", sans-serif;
 }
 
 .light-mode {
-    --clr-d-very-dark-grayish-blue: hsl(0, 0%, 98%); /*bgcolor search container and todo´s container bg-color-dark*/
+    --clr-d-very-dark-grayish-blue: hsl(0, 0%, 98%);
+    /*bgcolor search container and todo´s container bg-color-dark*/
     --clr-l-light-gray: hsl(235, 19%, 35%);
-    --clr-d-very-dark-blue:  hsl(233, 11%, 84%); /*body-bg-color*/
-    --clr-l-very-light-grayish-blue: hsl(236, 9%, 61%); /*placeholder input color*/
+    --clr-d-very-dark-blue: hsl(233, 11%, 84%);
+    /*body-bg-color*/
+    --clr-l-very-light-grayish-blue: hsl(236, 9%, 61%);
+    /*placeholder input color*/
     background-image: url(./images/bg-desktop-light.jpg);
 }
 
@@ -49,30 +49,32 @@ html {
 }
 
 body {
-    background-image: url(./images/bg-desktop-dark.jpg); /*background image dark*/
+    background-image: url(./images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
     background-position: top;
     background-size: contain;
     background-color: var(--clr-d-very-dark-blue);
     transition: background-color 0.6s, color 0.6s, background-image 0.6s;
+    display: flex;
+    flex-direction: column;
 }
 
-h1, span, div {
+h1,
+span,
+div {
     font-family: var(--ff-primary);
 }
 
 div.hearder {
-    /*border: green solid 3px;*/
-    display:  flex;
+    display: flex;
 }
 
 section.container {
-    /*border: red solid 4px;*/
-    width: 45%;
+    width: 55%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 1rem;
     margin-bottom: 5rem;
 }
 
@@ -93,7 +95,8 @@ h1 {
     background: none;
 }
 
-div.input, div.button-container-mobile {
+div.input,
+div.button-container-mobile {
     height: 4rem;
     background-color: var(--clr-d-very-dark-grayish-blue);
     margin-bottom: 2rem;
@@ -118,7 +121,6 @@ input {
 
 /*main container for the list*/
 .main-container {
-    /*border: solid green 3px;*/
     display: flex;
     flex-direction: column;
     min-height: 20rem;
@@ -145,8 +147,8 @@ div.list-row {
 
 }
 
-
-.circle { /*the circle before the task name*/
+.circle {
+    /*the circle before the task name*/
     border: solid 1px var(--clr-l-light-grayish-blue);
     height: 27px;
     width: 27px;
@@ -168,7 +170,11 @@ div.list-row {
 }
 
 #close {
-    margin-left: auto; 
+    margin-left: auto;
+}
+
+#close:hover {
+    cursor: pointer;
 }
 
 .task-name {
@@ -181,20 +187,20 @@ div.list-row {
 }
 
 /*filters on the bottom*/
-.menu { 
+.menu {
     align-self: center;
     margin-top: auto;
-    /*border: blue solid 3px;*/
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
-    padding: 1.7rem 2rem;
+    padding: 1.7rem 1rem;
     padding-bottom: .5rem;
 }
 
 .menu button:hover {
     color: var(--clr-button-hover);
+    cursor: pointer;
 }
 
 div.button-container-desktop {
@@ -202,7 +208,7 @@ div.button-container-desktop {
     justify-content: space-between;
     align-content: flex-start;
     align-items: flex-start;
-    width: 30%;
+    width: 35%;
 }
 
 button {
@@ -225,16 +231,23 @@ button.active {
 }
 
 /*Footer*/
+
 footer {
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: 0;
+    height: 2rem;
+    background-color: var(--clr-d-very-dark-blue);
+    font-size: 1.5rem;
     display: flex;
+    align-items: flex-end;
     justify-content: center;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 800px) {
     section.container {
         width: 90%;
-        margin-top: 1.8rem; 
-        margin-bottom: 5rem; /*edit 5 or delete*/
+        margin-top: 1.8rem;
     }
 
     body {
@@ -252,7 +265,7 @@ footer {
         height: 3rem;
         margin-bottom: 1rem;
     }
-    
+
     input {
         height: 3rem;
         padding: 0 .8rem;
@@ -269,6 +282,8 @@ footer {
 
     div.button-container-desktop {
         visibility: hidden;
+        width: 0%;
+        height: 0%;
     }
 
     div.button-container-mobile {
@@ -283,10 +298,31 @@ footer {
         width: 1.3rem;
         margin-right: .9rem;
     }
-    
+
     #close-icon {
         width: .8rem;
         height: .8rem;
+    }
+
+    .clear-completed-btn {
+        width: 6.6rem;
+    }
+
+    div.button-container-mobile button.active {
+        color: var(--clr-button-hover);
+    }
+
+    .task-counter {
+        font-size: .9rem;
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+    .task-counter {
+        font-size: .6rem;
+        width: 100%;
     }
 
 }

@@ -16,8 +16,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -36,15 +34,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![mobile light mode](./todoapp_375px_light.png)
+![mobile dark mode](./todoapp_375px_dark.png)
 
 ### Links
 
@@ -56,60 +47,66 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
+- CSS3
+- Vanilla JS
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned some new things on this project.
 
-To see how you can add code snippets, see below:
+- using HTML drag and drop API
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+- saving data in the localStorage. When we reload or close the browser then the data from the todo list and as well the order or the list items remains the same. 
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+function saveData() {
+    localStorage.setItem('data', taskItemsContainer.innerHTML);
 }
+
+function showTasks() {
+    taskItemsContainer.innerHTML = localStorage.getItem('data')
+}
+showTasks()
 ```
 
+- filtering the list (all, active, completed)
 
+- keypress event
 
+```js
+//executes the function when we hit enter and adds tasks to the list
+inputField.addEventListener('keypress', function (e) {
+    if (e.code === "Enter") {
+        addTask()
+        countTasks() //not needed
+    }
+});
+```
 ### Continued development
-
-
+- JS skills
+- CSS responsive layouts
 
 ### Useful resources
 
-- [gradient generator](https://mycolor.space/gradient?ori=to+right+top&hex=%2357DDFF&hex2=%23C058F3&sub=1)
+- [HTML drag and drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+- [HTML drag and drop API detailed practical guide](https://web.dev/drag-and-drop/) - This resource provides an excellent practical explanation on this topic. I have built these steps into my code.
 
-- drag and drop API application description: awesome: [draganddrop](https://web.dev/drag-and-drop/)
+- [Using the webstorage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
 
+- [the keypress event](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event) 
+- [event.code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+- [keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) - These 3 MDN resources helped me with keyboard events and create a simple function which will be executed when we hit enter. It was needed to the input field.
+- [gradient generator](https://cssgradient.io)
 
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Frontend Mentor - [@MirrMurr](https://www.frontendmentor.io/profile/MirrMurr)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
+I am really glad that I have found this article on HTML drag and drop API: (https://web.dev/drag-and-drop/). This practical example was a great help to understand the basics of drag and drop API. 
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**

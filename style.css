@@ -59,6 +59,11 @@ body {
     flex-direction: column;
 }
 
+main {
+    position: relative;
+    min-height: 100vh;
+}
+
 h1,
 span,
 div {
@@ -233,6 +238,7 @@ button.active {
 /*Footer*/
 
 footer {
+    position: absolute;
     width: 100%;
     bottom: 0;
     height: 2rem;
